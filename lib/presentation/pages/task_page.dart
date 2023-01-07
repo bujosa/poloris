@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../widgets/index.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class TaskPage extends StatelessWidget {
+  const TaskPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,10 +12,10 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const <Widget>[
-              Text('Home Page'),
+              Text('Task Page'),
             ],
           ),
         ),
-        bottomNavigationBar: const BottomNavigationBarWidget(1));
+        bottomNavigationBar: const BottomNavigationBarWidget(2));
   }
 }

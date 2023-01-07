@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/bottom_navigation_bar.dart';
+import '../widgets/index.dart';
 
 class CategoryPage extends StatelessWidget {
   const CategoryPage({super.key});
@@ -7,21 +7,7 @@ class CategoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(100),
-            child: Center(
-              child: AppBar(
-                title: const Text(
-                  'Poloris Todo',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 60),
-                ),
-                backgroundColor: Colors.lightBlue,
-                elevation: 0,
-              ),
-            )),
+        appBar: const AppBarWidget(),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
