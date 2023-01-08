@@ -7,7 +7,7 @@ class TaskPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const AppBarWidget(),
+        appBar: const AppBarWidget(title: 'Tasks', disableIcon: false, iconData: Icons.task_alt,),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

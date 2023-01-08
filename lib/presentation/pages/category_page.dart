@@ -8,7 +8,11 @@ class CategoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const AppBarWidget(),
+        appBar: const AppBarWidget(
+          title: 'Categories',
+          disableIcon: true,
+          fontSize: 50,
+        ),
         body: CustomScrollView(slivers: [
           SliverList(
             delegate: SliverChildListDelegate(

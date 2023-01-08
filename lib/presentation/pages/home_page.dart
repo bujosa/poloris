@@ -7,7 +7,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const AppBarWidget(),
+        appBar: const AppBarWidget(
+            title: 'Poloris', iconData: Icons.task, disableIcon: false),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
