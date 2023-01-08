@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
-  const AppBarWidget({super.key});
+  const AppBarWidget({
+    required this.title,
+    this.iconData,
+    required this.disableIcon,
+    this.fontSize,
+    super.key,
+  });
+
+  final double? fontSize;
+  final bool disableIcon;
+  final String title;
+  final IconData? iconData;
 
   @override
   Widget build(BuildContext context) {
@@ -9,15 +20,20 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         preferredSize: const Size.fromHeight(80),
         child: AppBar(
           title: Row(
-            children: const <Widget>[
-              Text(
-                'Poloris',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 60),
+            children: <Widget>[
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  title,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: fontSize ?? 60),
+                ),
               ),
-              Icon(Icons.task, color: Colors.white, size: 60)
+              disableIcon || iconData == null
+                  ? Container()
+                  : Icon(iconData, color: Colors.white, size: fontSize ?? 60),
             ],
           ),
           backgroundColor: Colors.brown[300],

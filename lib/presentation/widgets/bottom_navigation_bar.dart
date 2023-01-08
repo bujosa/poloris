@@ -39,13 +39,16 @@ class BottomNavigationBarWidget extends StatelessWidget {
             )
           ],
           opacity: 30),
-      unselectedIconTheme: const IconThemeData(size: 30, shadows: [
-        Shadow(
-          blurRadius: 5,
-          color: Colors.black,
-          offset: Offset(0, 0),
-        )
-      ]),
+      unselectedIconTheme: const IconThemeData(
+        size: 30,
+        shadows: [
+          Shadow(
+            blurRadius: 5,
+            color: Colors.black,
+            offset: Offset(0, 0),
+          )
+        ],
+      ),
       elevation: 10,
       showSelectedLabels: false,
       onTap: (value) => {
