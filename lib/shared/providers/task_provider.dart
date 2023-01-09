@@ -171,4 +171,16 @@ class TaskProvider extends ChangeNotifier {
     }
     return todayCount;
   }
+
+  int get lastWeek {
+    int lastWeekCount = 0;
+    for (var task in myTasks) {
+      if (DateTime.parse(task.date)
+          .isAfter(DateTime.now().subtract(const Duration(days: 7)))) {
+        lastWeekCount++;
+      }
+    }
+
+    return lastWeekCount;
+  }
 }
