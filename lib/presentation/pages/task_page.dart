@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:poloris/models/task_model.dart';
+import 'package:poloris/presentation/widgets/tasks/task_tile.dart';
 import 'package:poloris/shared/enum/category_enum.dart';
 import 'package:poloris/shared/providers/task_provider.dart';
-import 'package:poloris/shared/utils/category_map.dart';
 import 'package:provider/provider.dart';
 import '../widgets/index.dart';
 
@@ -201,66 +201,15 @@ class _TaskPageState extends State<TaskPage> {
                   itemBuilder: (context, index) {
                     final item = taskProvider.myTasks[index];
                     return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4),
-                      child: Dismissible(
-                        direction: DismissDirection.startToEnd,
-                        key: Key(item.id.toString()),
-                        onDismissed: (direction) {
-                          setState(() {
-                            taskProvider.eliminateTask(index);
-                          });
-                        },
-                        background: Container(
-                            alignment: Alignment.centerLeft,
-                            color: const Color.fromARGB(255, 5, 83, 8),
-                            child: Row(children: const [
-                              Icon(Icons.task_alt,
-                                  color: Colors.white, size: 40),
-                              Text(
-                                'Completed',
-                                style: TextStyle(
-                                    fontSize: 30, color: Colors.white),
-                              )
-                            ])),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(20),
-                                topRight: Radius.circular(20),
-                                bottomLeft: Radius.circular(20),
-                                bottomRight: Radius.circular(20)),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 5,
-                                blurRadius: 7,
-                                offset: const Offset(
-                                    0, 3), // changes position of shadow
-                              ),
-                            ],
-                          ),
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 20),
-                                child: categoryMapIconData[item.category],
-                              ),
-                              Expanded(
-                                child: Text(
-                                  item.title,
-                                  style: const TextStyle(fontSize: 25),
-                                  maxLines: 3,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
+                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        child: TaskTileWidget(
+                          item: item,
+                          callback: () {
+                            setState(() {
+                              taskProvider.eliminateTask(index);
+                            });
+                          },
+                        ));
                   },
                 ),
               ),
