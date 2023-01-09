@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:poloris/presentation/pages/category_page.dart';
+import 'package:poloris/presentation/pages/category_view/category_task_page.dart';
 import 'package:poloris/presentation/pages/home_page.dart';
 import 'package:poloris/presentation/pages/task_page.dart';
+import 'package:poloris/shared/enum/category_enum.dart';
 import 'package:poloris/shared/providers/task_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -29,6 +31,17 @@ class MyApp extends StatelessWidget {
           '/home': (context) => const HomePage(),
           '/categories': (context) => const CategoryPage(),
           '/tasks': (context) => const TaskPage(),
+          '/category/health': (context) =>
+              const CategoryTaskPage(category: CategoryEnum.health),
+          '/category/work': (context) => const CategoryTaskPage(
+                category: CategoryEnum.work,
+              ),
+          '/category/personal': (context) => const CategoryTaskPage(
+                category: CategoryEnum.personal,
+              ),
+          '/category/study': (context) => const CategoryTaskPage(
+                category: CategoryEnum.study,
+              ),
         },
       ),
     );
