@@ -197,9 +197,9 @@ class _TaskPageState extends State<TaskPage> {
             : Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: ListView.builder(
-                  itemCount: taskProvider.tasks.length,
+                  itemCount: taskProvider.myTasks.length,
                   itemBuilder: (context, index) {
-                    final item = taskProvider.tasks[index];
+                    final item = taskProvider.myTasks[index];
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 2),
                       child: Dismissible(
@@ -207,7 +207,7 @@ class _TaskPageState extends State<TaskPage> {
                         key: Key(item.id.toString()),
                         onDismissed: (direction) {
                           setState(() {
-                            taskProvider.tasks.removeAt(index);
+                            taskProvider.myTasks.removeAt(index);
                           });
                         },
                         background: Container(

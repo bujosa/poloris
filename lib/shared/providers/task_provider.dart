@@ -120,8 +120,19 @@ class TaskProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<Task> get tasks {
-    return myTasks;
+  int countCategory(category) {
+    switch (category) {
+      case CategoryEnum.health:
+        return countHealthCategory;
+      case CategoryEnum.personal:
+        return countPersonalCategory;
+      case CategoryEnum.study:
+        return countStudyCategory;
+      case CategoryEnum.work:
+        return countWorkCategory;
+      default:
+        return 0;
+    }
   }
 
   int get countPersonalCategory {
