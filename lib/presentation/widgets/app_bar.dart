@@ -22,9 +22,10 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           title: Row(
             children: <Widget>[
               FittedBox(
-                fit: BoxFit.scaleDown,
+                fit: BoxFit.fitWidth,
                 child: Text(
                   title,
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,

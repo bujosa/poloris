@@ -6,6 +6,7 @@ import 'package:poloris/presentation/widgets/tasks/task_tile.dart';
 import 'package:poloris/shared/enum/category_enum.dart';
 import 'package:poloris/shared/providers/task_provider.dart';
 import 'package:poloris/shared/utils/category_map.dart';
+import 'package:poloris/shared/utils/capitalize.dart';
 import 'package:provider/provider.dart';
 
 class CategoryTaskPage extends StatefulWidget {
@@ -24,8 +25,10 @@ class _CategoryTaskPageState extends State<CategoryTaskPage> {
 
     return Scaffold(
         appBar: AppBarWidget(
-          title: 'Tasks ${categoryMapEmoji[widget.category]!}',
+          title:
+              '${widget.category.name.capitalize()} ${categoryMapEmoji[widget.category]!}',
           disableIcon: true,
+          fontSize: categoryMapFontsize[widget.category]!,
         ),
         body: taskProvider.getTaskByCategory.isEmpty
             ? const NothingTodayWidget()

@@ -17,3 +17,10 @@ const Map<CategoryEnum, String> categoryMapEmoji = {
   CategoryEnum.study: '📚',
   CategoryEnum.work: '👨‍💻'
 };
+
+const Map<CategoryEnum, double> categoryMapFontsize = {
+  CategoryEnum.health: 60,
+  CategoryEnum.personal: 50,
+  CategoryEnum.study: 60,
+  CategoryEnum.work: 60
+};
