@@ -167,7 +167,7 @@ class _TaskPageState extends State<TaskPage> {
 
       taskProvider.addTask(Task(
         id: currentTime,
-        date: DateTime.now().toIso8601String(),
+        date: DateTime.now().toString().substring(0, 10),
         time: currentTime,
         title: title,
         category: _category,
@@ -201,13 +201,13 @@ class _TaskPageState extends State<TaskPage> {
                   itemBuilder: (context, index) {
                     final item = taskProvider.myTasks[index];
                     return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 2),
+                      padding: const EdgeInsets.symmetric(vertical: 4),
                       child: Dismissible(
                         direction: DismissDirection.startToEnd,
                         key: Key(item.id.toString()),
                         onDismissed: (direction) {
                           setState(() {
-                            taskProvider.myTasks.removeAt(index);
+                            taskProvider.eliminateTask(index);
                           });
                         },
                         background: Container(
