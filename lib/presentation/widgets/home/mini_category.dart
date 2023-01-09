@@ -21,6 +21,7 @@ class _MiniCategoryWidgetState extends State<MiniCategoryWidget> {
 
     return GestureDetector(
       onTap: () {
+        taskProvider.updateCategory(widget.category);
         Navigator.pushNamed(context, '/category/${widget.category.name}');
       },
       child: Container(
