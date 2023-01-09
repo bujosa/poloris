@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:poloris/presentation/widgets/category/category.dart';
 import 'package:poloris/shared/enum/category_enum.dart';
-import '../widgets/index.dart';
+import '../../widgets/index.dart';
 
 class CategoryPage extends StatelessWidget {
   const CategoryPage({super.key});

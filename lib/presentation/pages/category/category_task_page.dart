@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:poloris/presentation/widgets/index.dart';
 import 'package:poloris/presentation/widgets/tasks/create_task.dart';
+import 'package:poloris/presentation/widgets/tasks/nothing_today.dart';
 import 'package:poloris/presentation/widgets/tasks/task_tile.dart';
 import 'package:poloris/shared/enum/category_enum.dart';
 import 'package:poloris/shared/providers/task_provider.dart';
+import 'package:poloris/shared/utils/category_map.dart';
 import 'package:provider/provider.dart';
 
 class CategoryTaskPage extends StatefulWidget {
@@ -21,20 +23,12 @@ class _CategoryTaskPageState extends State<CategoryTaskPage> {
     final taskProvider = Provider.of<TaskProvider>(context);
 
     return Scaffold(
-        appBar: const AppBarWidget(
-          title: 'Tasks',
-          disableIcon: false,
-          iconData: Icons.task_alt,
+        appBar: AppBarWidget(
+          title: 'Tasks ${categoryMapEmoji[widget.category]!}',
+          disableIcon: true,
         ),
         body: taskProvider.getTaskByCategory.isEmpty
-            ? Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const <Widget>[
-                    Text('Nothing today!', style: TextStyle(fontSize: 40)),
-                  ],
-                ),
-              )
+            ? const NothingTodayWidget()
             : Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: ListView.builder(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poloris/presentation/widgets/tasks/create_task.dart';
+import 'package:poloris/presentation/widgets/tasks/nothing_today.dart';
 import 'package:poloris/presentation/widgets/tasks/task_tile.dart';
 import 'package:poloris/shared/providers/task_provider.dart';
 import 'package:provider/provider.dart';
@@ -24,14 +25,7 @@ class _TaskPageState extends State<TaskPage> {
           iconData: Icons.task_alt,
         ),
         body: taskProvider.myTasks.isEmpty
-            ? Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const <Widget>[
-                    Text('Nothing today!', style: TextStyle(fontSize: 40)),
-                  ],
-                ),
-              )
+            ? const NothingTodayWidget()
             : Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: ListView.builder(

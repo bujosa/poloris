@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:poloris/presentation/pages/category_page.dart';
-import 'package:poloris/presentation/pages/category_view/category_task_page.dart';
+import 'package:poloris/presentation/pages/category/category_page.dart';
+import 'package:poloris/presentation/pages/category/category_task_page.dart';
 import 'package:poloris/presentation/pages/home_page.dart';
 import 'package:poloris/presentation/pages/task_page.dart';
 import 'package:poloris/shared/enum/category_enum.dart';
