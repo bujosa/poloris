@@ -11,6 +11,7 @@ class TaskProvider extends ChangeNotifier {
   List<Task> workTasks = <Task>[];
   List<Task> personalTasks = <Task>[];
   List<Task> studyTasks = <Task>[];
+  int totalCompleted = 0;
 
   TaskProvider() {
     _loadTasks();
@@ -18,6 +19,9 @@ class TaskProvider extends ChangeNotifier {
 
   Future<void> _loadTasks() async {
     prefs = await SharedPreferences.getInstance();
+    int? totalString = prefs.getInt('total_key');
+    totalCompleted = totalString ?? 0;
+
     String? tasksString = prefs.getString('tasks_key');
     myTasks = tasksString == null ? [] : Task.decode(tasksString);
 
@@ -84,6 +88,9 @@ class TaskProvider extends ChangeNotifier {
         break;
     }
 
+    totalCompleted += 1;
+
+    await prefs.setInt('total_key', totalCompleted);
     await prefs.setString('tasks_key', Task.encode(myTasks));
     notifyListeners();
   }
@@ -149,5 +156,19 @@ class TaskProvider extends ChangeNotifier {
 
   int get countHealthCategory {
     return healthTasks.length;
+  }
+
+  int get global {
+    return myTasks.length + totalCompleted;
+  }
+
+  int get today {
+    int todayCount = 0;
+    for (var task in myTasks) {
+      if (task.date == DateTime.now().toString().substring(0, 10)) {
+        todayCount++;
+      }
+    }
+    return todayCount;
   }
 }
