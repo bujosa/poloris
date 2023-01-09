@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:poloris/model/task_model.dart';
+import 'package:poloris/models/task_model.dart';
 import 'package:poloris/shared/enum/category_enum.dart';
+import 'package:poloris/shared/providers/task_provider.dart';
 import 'package:poloris/shared/utils/category_map.dart';
+import 'package:provider/provider.dart';
 import '../widgets/index.dart';
 
 class TaskPage extends StatefulWidget {
@@ -13,7 +15,14 @@ class TaskPage extends StatefulWidget {
 
 class _TaskPageState extends State<TaskPage> {
   CategoryEnum _category = CategoryEnum.health;
-  final List<Task> _tasks = <Task>[];
+  late TaskProvider taskProvider;
+
+  @override
+  void initState() {
+    taskProvider = Provider.of<TaskProvider>(context, listen: false);
+    super.initState();
+  }
+
   String title = '';
   TextEditingController myController = TextEditingController();
 
@@ -155,7 +164,8 @@ class _TaskPageState extends State<TaskPage> {
       title = myController.text;
       myController.clear();
       int currentTime = DateTime.now().millisecondsSinceEpoch;
-      _tasks.add(Task(
+
+      taskProvider.addTask(Task(
         id: currentTime,
         date: DateTime.now().toIso8601String(),
         time: currentTime,
@@ -167,13 +177,15 @@ class _TaskPageState extends State<TaskPage> {
 
   @override
   Widget build(BuildContext context) {
+    final taskProvider = Provider.of<TaskProvider>(context);
+
     return Scaffold(
         appBar: const AppBarWidget(
           title: 'Tasks',
           disableIcon: false,
           iconData: Icons.task_alt,
         ),
-        body: _tasks.isEmpty
+        body: taskProvider.myTasks.isEmpty
             ? Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -185,9 +197,9 @@ class _TaskPageState extends State<TaskPage> {
             : Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: ListView.builder(
-                  itemCount: _tasks.length,
+                  itemCount: taskProvider.tasks.length,
                   itemBuilder: (context, index) {
-                    final item = _tasks[index];
+                    final item = taskProvider.tasks[index];
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 2),
                       child: Dismissible(
@@ -195,24 +207,39 @@ class _TaskPageState extends State<TaskPage> {
                         key: Key(item.id.toString()),
                         onDismissed: (direction) {
                           setState(() {
-                            _tasks.removeAt(index);
+                            taskProvider.tasks.removeAt(index);
                           });
                         },
                         background: Container(
                             alignment: Alignment.centerLeft,
                             color: const Color.fromARGB(255, 5, 83, 8),
-                            child: const Text(
-                              'Completed',
-                              style:
-                                  TextStyle(fontSize: 30, color: Colors.white),
-                            )),
+                            child: Row(children: const [
+                              Icon(Icons.task_alt,
+                                  color: Colors.white, size: 40),
+                              Text(
+                                'Completed',
+                                style: TextStyle(
+                                    fontSize: 30, color: Colors.white),
+                              )
+                            ])),
                         child: Container(
                           width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.grey,
-                              width: 2,
-                            ),
+                            color: Colors.white,
+                            borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20),
+                                bottomLeft: Radius.circular(20),
+                                bottomRight: Radius.circular(20)),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: const Offset(
+                                    0, 3), // changes position of shadow
+                              ),
+                            ],
                           ),
                           child: Row(
                             children: [
@@ -224,7 +251,7 @@ class _TaskPageState extends State<TaskPage> {
                               Expanded(
                                 child: Text(
                                   item.title,
-                                  style: const TextStyle(fontSize: 30),
+                                  style: const TextStyle(fontSize: 25),
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
                                 ),

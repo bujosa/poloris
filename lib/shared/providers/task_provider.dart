@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:poloris/model/task_model.dart';
+import 'package:poloris/models/task_model.dart';
 import 'package:poloris/shared/enum/category_enum.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
