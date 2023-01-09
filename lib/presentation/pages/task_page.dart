@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:poloris/model/task_model.dart';
 import 'package:poloris/shared/enum/category_enum.dart';
+import 'package:poloris/shared/utils/category_map.dart';
 import '../widgets/index.dart';
 
 class TaskPage extends StatefulWidget {
@@ -14,7 +15,7 @@ class _TaskPageState extends State<TaskPage> {
   CategoryEnum _category = CategoryEnum.health;
   final List<Task> _tasks = <Task>[];
   String title = '';
-  final myController = TextEditingController();
+  TextEditingController myController = TextEditingController();
 
   void _showModal() {
     showModalBottomSheet<void>(
@@ -162,14 +163,6 @@ class _TaskPageState extends State<TaskPage> {
         category: _category,
       ));
     });
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Task added!'),
-      ),
-    );
-
-    // If my controller is empty then show a snackbar
   }
 
   @override
@@ -180,14 +173,70 @@ class _TaskPageState extends State<TaskPage> {
           disableIcon: false,
           iconData: Icons.task_alt,
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const <Widget>[
-              Text('Nothing today!', style: TextStyle(fontSize: 40)),
-            ],
-          ),
-        ),
+        body: _tasks.isEmpty
+            ? Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const <Widget>[
+                    Text('Nothing today!', style: TextStyle(fontSize: 40)),
+                  ],
+                ),
+              )
+            : Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: ListView.builder(
+                  itemCount: _tasks.length,
+                  itemBuilder: (context, index) {
+                    final item = _tasks[index];
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 2),
+                      child: Dismissible(
+                        direction: DismissDirection.startToEnd,
+                        key: Key(item.id.toString()),
+                        onDismissed: (direction) {
+                          setState(() {
+                            _tasks.removeAt(index);
+                          });
+                        },
+                        background: Container(
+                            alignment: Alignment.centerLeft,
+                            color: const Color.fromARGB(255, 5, 83, 8),
+                            child: const Text(
+                              'Completed',
+                              style:
+                                  TextStyle(fontSize: 30, color: Colors.white),
+                            )),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.grey,
+                              width: 2,
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 20),
+                                child: categoryMapIconData[item.category],
+                              ),
+                              Expanded(
+                                child: Text(
+                                  item.title,
+                                  style: const TextStyle(fontSize: 30),
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             _showModal();
