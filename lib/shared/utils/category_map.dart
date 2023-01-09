@@ -10,3 +10,10 @@ const Map<CategoryEnum, Icon> categoryMapIconData = {
   CategoryEnum.study: Icon(Icons.assignment, color: Colors.blueAccent),
   CategoryEnum.work: Icon(Icons.work, color: Colors.cyan)
 };
+
+const Map<CategoryEnum, String> categoryMapEmoji = {
+  CategoryEnum.health: '🏥',
+  CategoryEnum.personal: '👨‍👩‍👧‍👦',
+  CategoryEnum.study: '📚',
+  CategoryEnum.work: '👨‍💻'
+};
