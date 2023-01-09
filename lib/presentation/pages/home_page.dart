@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../shared/providers/task_provider.dart';
+import '../widgets/home/active_tasks.dart';
 import '../widgets/index.dart';
 
 class HomePage extends StatefulWidget {
@@ -26,45 +27,7 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius: 10.0,
-                          spreadRadius: 5.0,
-                          offset: Offset(0.0, 0.0),
-                        )
-                      ],
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              'Total Active tasks',
-                              style: TextStyle(fontSize: 25),
-                            ),
-                            Text(
-                              taskProvider.myTasks.length.toString(),
-                              style: const TextStyle(
-                                  fontSize: 30, fontWeight: FontWeight.bold),
-                            )
-                          ],
-                        ),
-                        const Icon(
-                          Icons.timeline,
-                          color: Colors.blue,
-                          size: 80,
-                        )
-                      ],
-                    )),
+                const TotalActiveWidget(),
                 const SizedBox(
                   height: 20,
                 ),
