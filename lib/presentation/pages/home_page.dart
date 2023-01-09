@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:poloris/presentation/widgets/home/calendar_tasks.dart';
 import 'package:poloris/presentation/widgets/home/completed_tasks.dart';
 import 'package:poloris/presentation/widgets/home/global_tasks.dart';
-import 'package:provider/provider.dart';
-import '../../shared/providers/task_provider.dart';
+import '../../shared/enum/category_enum.dart';
 import '../widgets/home/active_tasks.dart';
+import '../widgets/home/mini_category.dart';
 import '../widgets/index.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,8 +17,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    final taskProvider = Provider.of<TaskProvider>(context);
-
     return Scaffold(
         appBar: const AppBarWidget(
             title: 'Poloris', iconData: Icons.task, disableIcon: false),
@@ -33,9 +32,25 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(
                   height: 20,
                 ),
+                const CalendarTaskWidget(),
+                const SizedBox(
+                  height: 20,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [CompletedTaskWidget(), GlobalTaskWidget()],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    MiniCategoryWidget(category: CategoryEnum.health),
+                    MiniCategoryWidget(category: CategoryEnum.work),
+                    MiniCategoryWidget(category: CategoryEnum.personal),
+                    MiniCategoryWidget(category: CategoryEnum.study)
+                  ],
                 ),
               ],
             ),
