@@ -28,20 +28,19 @@ class BottomNavigationBarWidget extends StatelessWidget {
         ),
       ],
       currentIndex: currentIndex,
-      selectedItemColor: Colors.brown[300],
+      selectedItemColor: Colors.blueGrey,
       selectedIconTheme: const IconThemeData(
-          size: 50,
+          size: 35,
           shadows: [
             Shadow(
               blurRadius: 2,
-              color: Colors.amber,
               offset: Offset(0, 0),
             )
           ],
           opacity: 30),
       unselectedIconTheme: const IconThemeData(
           size: 30,
-          color: Colors.black,
+          color: Colors.grey,
           shadows: [
             Shadow(
               blurRadius: 2,
@@ -52,6 +51,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
           opacity: 30),
       elevation: 10,
       showSelectedLabels: false,
+      showUnselectedLabels: false,
       onTap: (value) => {
         if (value != currentIndex)
           {

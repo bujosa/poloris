@@ -12,6 +12,7 @@ class TaskProvider extends ChangeNotifier {
   List<Task> personalTasks = <Task>[];
   List<Task> studyTasks = <Task>[];
   int totalCompleted = 0;
+  CategoryEnum initialCategory = CategoryEnum.health;
 
   TaskProvider() {
     _loadTasks();
@@ -95,6 +96,23 @@ class TaskProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void eliminateTaskByCategory(index) async {
+    switch (initialCategory) {
+      case CategoryEnum.health:
+        removeTaskInHealthList(index);
+        break;
+      case CategoryEnum.personal:
+        removeTaskInPersonalList(index);
+        break;
+      case CategoryEnum.study:
+        removeTaskInStudyList(index);
+        break;
+      case CategoryEnum.work:
+        removeTaskWorkCategory(index);
+        break;
+    }
+  }
+
   void removeTaskWorkCategory(index) async {
     Task deleteTask = workTasks.removeAt(index);
     myTasks.removeWhere((element) => element.id == deleteTask.id);
@@ -139,6 +157,26 @@ class TaskProvider extends ChangeNotifier {
         return countWorkCategory;
       default:
         return 0;
+    }
+  }
+
+  void updateCategory(CategoryEnum category) {
+    initialCategory = category;
+    notifyListeners();
+  }
+
+  List<Task> get getTaskByCategory {
+    switch (initialCategory) {
+      case CategoryEnum.health:
+        return healthTasks;
+      case CategoryEnum.personal:
+        return personalTasks;
+      case CategoryEnum.study:
+        return studyTasks;
+      case CategoryEnum.work:
+        return workTasks;
+      default:
+        return [];
     }
   }
 
