@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:poloris/shared/providers/task_provider.dart';
 import 'package:provider/provider.dart';
 
-class TotalActiveWidget extends StatefulWidget {
-  const TotalActiveWidget({super.key});
+class ActiveTasksWidget extends StatefulWidget {
+  const ActiveTasksWidget({super.key});
 
   @override
-  State<TotalActiveWidget> createState() => _TotalActiveWidgetState();
+  State<ActiveTasksWidget> createState() => _ActiveTasksWidgetState();
 }
 
-class _TotalActiveWidgetState extends State<TotalActiveWidget> {
+class _ActiveTasksWidgetState extends State<ActiveTasksWidget> {
   @override
   Widget build(BuildContext context) {
     final taskProvider = Provider.of<TaskProvider>(context);

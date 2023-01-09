@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                const TotalActiveWidget(),
+                const ActiveTasksWidget(),
                 const SizedBox(
                   height: 20,
                 ),
