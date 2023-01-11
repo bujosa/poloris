@@ -54,7 +54,7 @@ class _TaskTileWidgetState extends State<TaskTileWidget> {
         child: Row(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
               child: Text(
                 categoryMapEmoji[widget.item.category].toString(),
                 style: const TextStyle(
@@ -65,7 +65,7 @@ class _TaskTileWidgetState extends State<TaskTileWidget> {
             Expanded(
               child: Text(
                 widget.item.title,
-                style: const TextStyle(fontSize: 25),
+                style: const TextStyle(fontSize: 23),
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
               ),

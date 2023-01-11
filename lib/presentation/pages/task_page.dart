@@ -33,7 +33,8 @@ class _TaskPageState extends State<TaskPage> {
                   itemBuilder: (context, index) {
                     final item = taskProvider.myTasks[index];
                     return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 3),
                         child: TaskTileWidget(
                           item: item,
                           callback: () {
