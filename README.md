@@ -2,8 +2,7 @@
 This project is for create a simple todo app in flutter
 
 ## Demo
-
-
+https://user-images.githubusercontent.com/39348045/212529693-b1bf6a34-3a60-4ed3-b2dd-6678fd070652.mp4
 
 ## Getting Started
 
