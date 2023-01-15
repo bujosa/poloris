@@ -39,7 +39,8 @@ class _CategoryTaskPageState extends State<CategoryTaskPage> {
                   itemBuilder: (context, index) {
                     final item = taskProvider.getTaskByCategory[index];
                     return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 3),
                         child: TaskTileWidget(
                           item: item,
                           callback: () {
